@@ -1,17 +1,19 @@
-fetch('https://reqres.in/api/users/', {
+fetch('https://randomuser.me/api/?results=3', {
 
 //method and headers
-method: 'POST',
+method: 'GET',
 headers:{
 'Content-Type':'application/json'
+}
 
-},
-body: JSON.stringify( {
-    name: 'Cladina',
-    position : 'Teacher',
-    Author : 'Halfa a Day',
-    Area : 'Nakuru Town'
-})
+
+
+// body: JSON.stringify( {
+//     name: 'Cladina',
+//     position : 'Teacher',
+//     Author : 'Halfa a Day',
+//     Area : 'Nakuru Town'
+// })
 
 
 })
@@ -23,6 +25,7 @@ body: JSON.stringify( {
 
      //return json data
      return res.json();
+     
 
 
   } else{
