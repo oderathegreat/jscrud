@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Your page title here :)</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+<body>
+
+
+    <div class="firstname"> First Name : </div>
+<div class="lastname">Last Name: </div>
+
+ 
+    <script>
+
+// Declaire our variables 
+ const fname = document.querySelector('.firstname');
+ const lname = document.querySelector('.lastname');
+
+
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            console.log(xhr);
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                //console.log(xhr.responseText);
+                let resultData = JSON.parse(xhr.responseText);
+
+                for(let x = 0; x < resultData.results.length; x+=1) {
+
+                    //print out our array json data
+                    //console.log(resultData.results[x]);
+                    //out put data in browser
+
+                    let person  = resultData.results[x];
+
+                    fname.innerHTML += `${person.name.first} ${person.name.last} <img src="${person.picture.thumbnail}"><br>`;
+                    // lname.innerHTML += `${person.name.last}`;
+
+
+
+
+
+                }
+
+                //console.log(temp.people);
+            }
+        }
+        xhr.onprogress = function () {
+            console.log('loading.....');
+        }
+        xhr.onload = function () {
+            console.log('done getting data');
+        }
+        xhr.open('get', 'https://randomuser.me/api/?results=2');
+      
+        xhr.send();
+    </script>
+  
+</body>
+</html>
+
+
+
+
