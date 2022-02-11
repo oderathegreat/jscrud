@@ -3,6 +3,8 @@ const inputname = document.getElementById('nameinp');
 const inputtitle = document.getElementById('titleinp');
 const datadisplay = document.getElementById('displaybtn');
 
+const dispmessage = document.getElementById('message');
+
 
 
 //Event trigger for submit data
@@ -38,13 +40,12 @@ headers:{
 
 });
 
-
 //Display data
 datadisplay.addEventListener('click', function(){
 
     
 
-    fetch('http://localhost:3000/people').then(function (rep) {
+    fetch('http://localhost:3000/posts').then(function (rep) {
             return rep.json()
         }).then(function (data) {
             output(data);
@@ -54,12 +55,12 @@ datadisplay.addEventListener('click', function(){
 
 
  function output(data) {
-    message.innerHTML = "";
+    dispmessage.innerHTML = "";
     data.forEach(function (el, index) {
         console.log(el);
         let div = document.createElement('div');
-        div.innerHTML = `${el.id} <input type="text" value="${el.first}">`;
-        div.innerHTML += `<input type="text" value="${el.last}"><button>Update</button>`;
+        div.innerHTML = `${el.id} <input type="text" value="${el.inputname}">`;
+        div.innerHTML += `<input type="text" value="${el.inputtitle}"><button>Update</button>`;
         div.addEventListener('click', function () {
             let temps = div.querySelectorAll('input');
             let updater = div.querySelector('button');
@@ -67,8 +68,30 @@ datadisplay.addEventListener('click', function(){
                 updateData(el.id, temps[0].value, temps[1].value);
             })
         })
-        message.appendChild(div);
-    })
+        dispmessage.appendChild(div);
+    });
+
+
+    function updateData(id, inputname, inputtitle) {
+        console.log(id, inputname, inputtitle);
+        fetch('http://localhost:3000/posts/' + id, {
+            method: 'put'
+            , body: JSON.stringify({
+                inputname: first
+                , inputtitle: last
+            })
+            , headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (res) {
+            return res.text();
+        }).then(function (data) {
+            console.log(data);
+        })
+    }
+
+
+
 }
 
 
