@@ -1,0 +1,42 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Harry Potter",
+      "country": "London",
+      "genre": "Gothic"
+    },
+    {
+      "title": "Home Alone",
+      "country": "Vince Mcman",
+      "genre": "Pop",
+      "id": 2
+    },
+    {
+      "title": "",
+      "name": "",
+      "id": 3
+    },
+    {
+      "title": "",
+      "name": "",
+      "id": 4
+    },
+    {
+      "title": "Masaai Warrior",
+      "name": "Mbatian",
+      "id": 5
+    },
+    {
+      "title": "The Indian",
+      "name": "Kalasinga",
+      "id": 6
+    }
+  ],
+  "profile": [
+    {
+      "sex": "male",
+      "marital": "single"
+    }
+  ]
+}
